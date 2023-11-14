@@ -1,0 +1,126 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+
+        // stage('Hello') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
+    }
+}
+
+
+             
+
