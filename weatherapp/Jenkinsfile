@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         stage('Test Auth-Binaries') {
-                  agent {
+         agent {
             docker {
               image 'golang:alpine'
             }
@@ -16,32 +16,32 @@ pipeline {
             }
         }
 
-        stage('Hello2') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
+        // stage('Hello2') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
 
-        stage('Hello3') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
+        // stage('Hello3') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
 
-        stage('Hello4') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
+        // stage('Hello4') {
+        //     steps {
+        //         sh '''
+        //         ls 
+        //         pwd
+        //         '''
+        //     }
+        // }
 
         // stage('Hello') {
         //     steps {
