@@ -36,11 +36,11 @@
 
 pipeline {
     agent any
-     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    }
+    // environment {
+    //     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    // }
     stages {
-        stage('Test Auth-Binaries') {
+        stage('Test-Auth-Binaries') {
          agent {
             docker {
               image 'golang:1.20-alpine'
