@@ -102,7 +102,7 @@ pipeline {
         
             steps {
                 sh '''
-                cd $WORKSPACE/WEATHERAPP/auth
+                cd $WORKSPACE/weatherapp/auth
                 docker buid -t devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER} .
                 '''
             }
@@ -112,7 +112,7 @@ pipeline {
                 
                     steps {
                         sh '''
-                        cd $WORKSPACE/WEATHERAPP/UI
+                        cd $WORKSPACE/weatherapp/UI
                         docker buid -t devopseasylearning/s5-emile-weatherapp-UI:${BUILD_NUMBER} .
                         '''
                     }
@@ -122,7 +122,7 @@ pipeline {
         
             steps {
                 sh '''
-                cd $WORKSPACE/WEATHERAPP/weather
+                cd $WORKSPACE/weatherapp/weather
                 docker buid -t devopseasylearning/s5-emile-weather-weatherapp:${BUILD_NUMBER} .
                 '''
             }
@@ -132,7 +132,7 @@ pipeline {
         
             steps {
                 sh '''
-                cd $WORKSPACE/WEATHERAPP/db
+                cd $WORKSPACE/weatherapp/db
                 docker buid -t devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER} .
                 '''
             }
@@ -142,7 +142,7 @@ pipeline {
         
             steps {
                 sh '''
-                cd $WORKSPACE/WEATHERAPP/redis
+                cd $WORKSPACE/weatherapp/redis
                 docker buid -t devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER} .
                 '''
             }
