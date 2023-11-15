@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-		DOCKERHUB_CREDENTIALS=('dockerhub')
+		DOCKERHUB_CREDENTIALS = "docker-hub-cred"
 	}
     stages {
         stage('Test Auth-Binaries') {
