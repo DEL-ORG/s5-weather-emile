@@ -3,7 +3,14 @@ pipeline {
     agent {
         label ("aws-deploy")
     }
-    // environment {
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        disableConcurrentBuilds()
+        timeout (time: 60, unit: 'MINUTES')
+        timestamps()
+    }
+  
+  // environment {
     //     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     // }
     stages {
@@ -18,119 +25,48 @@ pipeline {
                 sh '''
                 cd weatherapp/auth/src/main
                 go build
+                go tess
                 ls -latr
                 cd -
                 '''
             }
         }
 
-        // stage('Hello2') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
+       stage('Test-UI-Binaries') {
+         agent {
+            docker {
+              image 'node:17'
+              args '-u root:root'
+            }
+            }
+            steps {
+                sh '''
+                cd weatherapp/UI
+                npm run
+                ls -latr
+                cd -
+                '''
+            }
+        }
 
-        // stage('Hello3') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
+      stage('Test-Weather-Binaries') {
+         agent {
+            docker {
+              image 'python:3.8-slim-buster'
+              args '-u root:root'
+            }
+            }
+            steps {
+                sh '''
+                cd weatherapp/weather
+                pip3 install -r requirements.txt
+                ls -latr
+                cd -
+                '''
+            }
+        }
 
-        // stage('Hello4') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
 
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
-
-        // stage('Hello') {
-        //     steps {
-        //         sh '''
-        //         ls 
-        //         pwd
-        //         '''
-        //     }
-        // }
     }
 }
 
