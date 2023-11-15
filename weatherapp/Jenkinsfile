@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Test Auth-Binaries') {
-         agent {
-            docker {
-              image 'golang:1.20-alpine'
-            }
-           }
+        // stage('Test Auth-Binaries') {
+        //  agent {
+        //     docker {
+        //       image 'golang:1.20-alpine'
+        //     }
+        //    }
             steps {
                 sh '''
                 ls -l
