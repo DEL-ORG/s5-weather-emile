@@ -36,7 +36,7 @@
 
 pipeline {
     agent {
-        label ("aws")
+        label ("aws-deploy")
     }
     // environment {
     //     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
@@ -50,8 +50,10 @@ pipeline {
             }
             steps {
                 sh '''
-                ls -l
-                pwd
+                cd weatherapp/auth/src/main
+                go build
+                ls -latr
+                cd -
                 '''
             }
         }
