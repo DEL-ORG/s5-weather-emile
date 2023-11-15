@@ -14,6 +14,14 @@ pipeline {
     //     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     // }
     stages {
+            stage('Hello') {
+                steps {
+                    sh '''
+                    ls 
+                    pwd
+                    '''
+                }
+            }
     //     stage('Test-Auth-Binaries') {
     //      agent {
     //         docker {
