@@ -91,6 +91,62 @@ pipeline {
 //                 }
 //             }
 //         }
+    // stage("Quality gate") {
+    //             steps {
+    //                 timeout(time: 1, unit: 'HOURS') {
+    //                 waitForQualityGate abortPipeline: true }
+    //             }
+    //         }
+
+      stage('Built-Auth-Image') {
+        
+            steps {
+                sh '''
+                cd $WORKSPACE/WEATHERAPP/auth
+                docker buid -t devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER} .
+                '''
+            }
+        }
+
+        stage('Built-UI-Image') {
+                
+                    steps {
+                        sh '''
+                        cd $WORKSPACE/WEATHERAPP/UI
+                        docker buid -t devopseasylearning/s5-emile-weatherapp-UI:${BUILD_NUMBER} .
+                        '''
+                    }
+                }
+
+                  stage('Built-Weather-Image') {
+        
+            steps {
+                sh '''
+                cd $WORKSPACE/WEATHERAPP/weather
+                docker buid -t devopseasylearning/s5-emile-weather-weatherapp:${BUILD_NUMBER} .
+                '''
+            }
+        }
+
+          stage('Built-db-Image') {
+        
+            steps {
+                sh '''
+                cd $WORKSPACE/WEATHERAPP/db
+                docker buid -t devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER} .
+                '''
+            }
+        }
+
+          stage('Built-redis-Image') {
+        
+            steps {
+                sh '''
+                cd $WORKSPACE/WEATHERAPP/redis
+                docker buid -t devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER} .
+                '''
+            }
+        }
 
     }
 }
