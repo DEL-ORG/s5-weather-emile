@@ -35,7 +35,9 @@
 
 
 pipeline {
-    agent any
+    agent {
+        label ("aws")
+    }
     // environment {
     //     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     // }
