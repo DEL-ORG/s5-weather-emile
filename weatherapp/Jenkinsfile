@@ -108,6 +108,15 @@ pipeline {
             }
         }
 
+        stage("Push-Auth-Image") {
+                when { branch "develop" }
+                steps { 
+                sh '''
+                    docker push devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER}
+                    '''
+                }
+            }
+
         stage('Built-UI-Image') {
                 
                     steps {
