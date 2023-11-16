@@ -2,12 +2,12 @@
 FROM golang:alpine AS builder
 RUN apk add git
 WORKDIR /go/src/app
-RUN ls -ltr
+RUN ls -latrh
 #COPY . .
-RUN ls -ltr
+RUN ls -latrh
 RUN git clone https://github.com/DEL-ORG/s5-weather-emile.git
 WORKDIR /go/src/app/s5-weather-emile/weatherapp/auth/src/main
-RUN ls -la
+RUN ls -latrh
 RUN go build -o /go/bin/app -v ./...
 
 #final stage
