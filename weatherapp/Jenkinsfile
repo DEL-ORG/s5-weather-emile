@@ -106,115 +106,115 @@ pipeline {
     //             }
     //         }
 
-    //   stage('Built-Auth-Image') {
+      stage('Built-Auth-Image') {
         
-    //         steps {
-    //             sh '''
-    //             cd $WORKSPACE/weatherapp/auth
-    //             docker build -t devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER} .
-    //             '''
-    //         }
-    //     }
+            steps {
+                sh '''
+                cd $WORKSPACE/weatherapp/auth
+                docker build -t devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER} .
+                '''
+            }
+        }
 
-    //     stage("Push-Auth-Image") {
-    //            when{ 
-    //       expression {
-    //         env.GIT_BRANCH == 'origin/develop' }  
-    //         }
-    //         steps {
-    //             sh '''
-    //                 docker push devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER}
-    //                 '''
-    //             }
-    //         }
+        stage("Push-Auth-Image") {
+               when{ 
+          expression {
+            env.GIT_BRANCH == 'origin/develop' }  
+            }
+            steps {
+                sh '''
+                    docker push devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER}
+                    '''
+                }
+            }
 
-    //     stage('Built-UI-Image') {
+        stage('Built-UI-Image') {
                 
-    //                 steps {
-    //                     sh '''
-    //                     cd $WORKSPACE/weatherapp/UI
-    //                     docker build -t devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER} .
-    //                     '''
-    //                 }
-    //             }
+                    steps {
+                        sh '''
+                        cd $WORKSPACE/weatherapp/UI
+                        docker build -t devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER} .
+                        '''
+                    }
+                }
 
-    //     stage("Push-UI-Image") {
-    //                 when{ 
-    //             expression {
-    //                 env.GIT_BRANCH == 'origin/develop' }  
-    //                 }
-    //                 steps {
-    //                     sh '''
-    //                         docker push devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER}
-    //                         '''
-    //                     }
-    //                 }
+        stage("Push-UI-Image") {
+                    when{ 
+                expression {
+                    env.GIT_BRANCH == 'origin/develop' }  
+                    }
+                    steps {
+                        sh '''
+                            docker push devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER}
+                            '''
+                        }
+                    }
 
-    //               stage('Built-Weather-Image') {
+                  stage('Built-Weather-Image') {
         
-    //         steps {
-    //             sh '''
-    //             cd $WORKSPACE/weatherapp/weather
-    //             docker build -t devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER} .
-    //             '''
-    //         }
-    //     }
+            steps {
+                sh '''
+                cd $WORKSPACE/weatherapp/weather
+                docker build -t devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER} .
+                '''
+            }
+        }
 
-    //     stage("Push-Weather-Image") {
-    //             when{ 
-    //         expression {
-    //             env.GIT_BRANCH == 'origin/develop' }  
-    //             }
-    //             steps {
-    //                 sh '''
-    //                     docker push devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER}
-    //                     '''
-    //                 }
-    //             }
+        stage("Push-Weather-Image") {
+                when{ 
+            expression {
+                env.GIT_BRANCH == 'origin/develop' }  
+                }
+                steps {
+                    sh '''
+                        docker push devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER}
+                        '''
+                    }
+                }
 
-    //       stage('Built-db-Image') {
+          stage('Built-db-Image') {
         
-    //         steps {
-    //             sh '''
-    //             cd $WORKSPACE/weatherapp/db
-    //             docker build -t devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER} .
-    //             '''
-    //         }
-    //     }
+            steps {
+                sh '''
+                cd $WORKSPACE/weatherapp/db
+                docker build -t devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER} .
+                '''
+            }
+        }
 
-    //         stage("Push-DB-Image") {
-    //                     when{ 
-    //                 expression {
-    //                     env.GIT_BRANCH == 'origin/develop' }  
-    //                     }
-    //                     steps {
-    //                         sh '''
-    //                             docker push devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER}
-    //                             '''
-    //                         }
-    //                     }
+            stage("Push-DB-Image") {
+                        when{ 
+                    expression {
+                        env.GIT_BRANCH == 'origin/develop' }  
+                        }
+                        steps {
+                            sh '''
+                                docker push devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER}
+                                '''
+                            }
+                        }
 
-    //         stage('Built-redis-Image') {
+            stage('Built-redis-Image') {
             
-    //             steps {
-    //                 sh '''
-    //                 cd $WORKSPACE/weatherapp/redis
-    //                 docker build -t devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER} .
-    //                 '''
-    //             }
-    //         }
+                steps {
+                    sh '''
+                    cd $WORKSPACE/weatherapp/redis
+                    docker build -t devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER} .
+                    '''
+                }
+            }
 
-    //         stage("Push-redis-Image") {
-    //                 when{ 
-    //             expression {
-    //                 env.GIT_BRANCH == 'origin/develop' }  
-    //                 }
-    //                 steps {
-    //                     sh '''
-    //                         docker push devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
-    //                         '''
-    //                     }
-    //                 }
+            stage("Push-redis-Image") {
+                    when{ 
+                expression {
+                    env.GIT_BRANCH == 'origin/develop' }  
+                    }
+                    steps {
+                        sh '''
+                            docker push devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
+                            '''
+                        }
+                    }
 
    
         stage('Compose construct') {
