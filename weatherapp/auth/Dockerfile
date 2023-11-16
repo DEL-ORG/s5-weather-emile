@@ -8,7 +8,7 @@ RUN ls -ltr
 #RUN git clone https://github.com/DEL-ORG/s5-weather-emile.git
 WORKDIR /go/src/app/weatherapp/auth/src/main
 RUN ls -la
-RUN go build -o /go/bin/app -v ./...
+RUN go build -o /go/bin/app -v 
 
 #final stage
 FROM alpine:latest
