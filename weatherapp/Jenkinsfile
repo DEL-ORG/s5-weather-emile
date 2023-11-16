@@ -218,7 +218,9 @@ pipeline {
 
    
                 stage('Compose construct') {
-
+             	agent { 
+                    label "deployer"
+                    }
                         steps {
                             script {
                             withCredentials([
@@ -329,7 +331,10 @@ pipeline {
                     }
                     steps {
                         sh '''
+                            docker-compose down --remove-orphans
                             docker-compose up -d
+                            docker-compose ps
+
                             '''
                         }
                     }
