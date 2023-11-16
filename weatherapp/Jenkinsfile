@@ -246,8 +246,8 @@ services:
     restart: always
 
   redis:
-    container_name: devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
-    image: redis:${BUILD_NUMBER}
+    container_name: weatherapp-redis
+    image: devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
     networks:
       - weatherapp
     environment:
