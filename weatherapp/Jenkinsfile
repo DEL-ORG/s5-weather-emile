@@ -30,81 +30,81 @@ pipeline {
                 //         '''
                 //     }
                 // }
-    //     stage('Test-Auth-Binaries') {
-    //      agent {
-    //         docker {
-    //           image 'golang:alpine'
-    //           args '-u root:root'
-    //         }
-    //         }
-    //         steps {
-    //             sh '''
-    //             cd weatherapp/auth/src/main
-    //             go build
-    //             go tess
-    //             ls -latr
-    //             cd -
-    //             '''
-    //         }
-    //     }
+        stage('Test-Auth-Binaries') {
+         agent {
+            docker {
+              image 'golang:alpine'
+              args '-u root:root'
+            }
+            }
+            steps {
+                sh '''
+                cd weatherapp/auth/src/main
+                go build
+                go tess
+                ls -latr
+                cd -
+                '''
+            }
+        }
 
-    //    stage('Test-UI-Binaries') {
-    //      agent {
-    //         docker {
-    //           image 'node:17'
-    //           args '-u root:root'
-    //         }
-    //         }
-    //         steps {
-    //             sh '''
-    //             cd weatherapp/UI
-    //             npm run
-    //             ls -latr
-    //             cd -
-    //             '''
-    //         }
-    //     }
+       stage('Test-UI-Binaries') {
+         agent {
+            docker {
+              image 'node:17'
+              args '-u root:root'
+            }
+            }
+            steps {
+                sh '''
+                cd weatherapp/UI
+                npm run
+                ls -latr
+                cd -
+                '''
+            }
+        }
 
-    //   stage('Test-Weather-Binaries') {
-    //      agent {
-    //         docker {
-    //           image 'python:3.8-slim-buster'
-    //           args '-u root:root'
-    //         }
-    //         }
-    //         steps {
-    //             sh '''
-    //             cd weatherapp/weather
-    //             pip3 install -r requirements.txt
-    //             ls -latr
-    //             cd -
-    //             '''
-    //         }
-    //     }
+      stage('Test-Weather-Binaries') {
+         agent {
+            docker {
+              image 'python:3.8-slim-buster'
+              args '-u root:root'
+            }
+            }
+            steps {
+                sh '''
+                cd weatherapp/weather
+                pip3 install -r requirements.txt
+                ls -latr
+                cd -
+                '''
+            }
+        }
 
-// stage('SonarQube analysis') {
-//             agent {
-//                 docker {
-//                   image 'sonarsource/sonar-scanner-cli:4.7.0'
-//                 }
-//                }
-//                environment {
-//         CI = 'true'
-//         //  scannerHome = tool 'Sonar'
-//         scannerHome='/opt/sonar-scanner'
-//     }
-//             steps{
-//                 withSonarQubeEnv('Sonar') {
-//                     sh "${scannerHome}/bin/sonar-scanner"
-//                 }
-//             }
-//         }
-    // stage("Quality gate") {
-    //             steps {
-    //                 timeout(time: 1, unit: 'HOURS') {
-    //                 waitForQualityGate abortPipeline: true }
-    //             }
-    //         }
+stage('SonarQube analysis') {
+            agent {
+                docker {
+                  image 'sonarsource/sonar-scanner-cli:4.7.0'
+                }
+               }
+               environment {
+        CI = 'true'
+        //  scannerHome = tool 'Sonar'
+        scannerHome='/opt/sonar-scanner'
+    }
+            steps{
+                withSonarQubeEnv('Sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
+    stage("Quality gate") {
+                steps {
+                    timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true }
+                }
+            }
 
       stage('Built-Auth-Image') {
         
