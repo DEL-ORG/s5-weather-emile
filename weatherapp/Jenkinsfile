@@ -217,21 +217,21 @@ pipeline {
     //                 }
 
    
-                stage('Compose construct') {
-             	agent { 
-                    label "deployer"
-                    }
-                        steps {
-                            script {
-                            withCredentials([
-                                string(credentialsId: 'WEATHERAPP_MYSQL_ROOT_PASSWORD', variable: 'WEATHERAPP_MYSQL_ROOT_PASSWORD'),
-                                string(credentialsId: 'WEATHERAPP_REDIS_PASSWORD', variable: 'WEATHERAPP_REDIS_PASSWORD'),
-                                string(credentialsId: 'WEATHERAPP_APIKEY', variable: 'WEATHERAPP_APIKEY'),
-                                string(credentialsId: 'WEATHERAPP_DB_PASSWORD', variable: 'WEATHERAPP_DB_PASSWORD')
-                            ]) {
+        stage('Compose construct') {
+        agent { 
+            label "deployer"
+            }
+                steps {
+                    script {
+                    withCredentials([
+                        string(credentialsId: 'WEATHERAPP_MYSQL_ROOT_PASSWORD', variable: 'WEATHERAPP_MYSQL_ROOT_PASSWORD'),
+                        string(credentialsId: 'WEATHERAPP_REDIS_PASSWORD', variable: 'WEATHERAPP_REDIS_PASSWORD'),
+                        string(credentialsId: 'WEATHERAPP_APIKEY', variable: 'WEATHERAPP_APIKEY'),
+                        string(credentialsId: 'WEATHERAPP_DB_PASSWORD', variable: 'WEATHERAPP_DB_PASSWORD')
+                    ]) {
 
-                                sh '''
-                                cat <<EOF > docker-compose.yml
+                        sh '''
+         cat <<EOF > docker-compose.yml
            version: '3.5'
 
             services:
@@ -312,7 +312,8 @@ pipeline {
               db-data:
               redis-data:
             EOF
-                                '''
+
+             '''
                             }
 
                             }
@@ -321,7 +322,7 @@ pipeline {
 
                         }
 
-         stage("Deploy the compose") {
+         stage("Deploy") {
                   	agent { 
                     label "deployer"
                     }
@@ -331,7 +332,9 @@ pipeline {
                     }
                     steps {
                         sh '''
-                           cat docker-compose.yaml
+                          ls -ltrha
+                          pwd
+                          cat docker-compose.yml
 
                             '''
                         }
