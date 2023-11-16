@@ -113,7 +113,7 @@ pipeline {
                     steps {
                         sh '''
                         cd $WORKSPACE/weatherapp/UI
-                        docker build -t devopseasylearning/s5-emile-weatherapp-UI:${BUILD_NUMBER} .
+                        docker build -t devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER} .
                         '''
                     }
                 }
