@@ -10,18 +10,18 @@ pipeline {
         timestamps()
     }
   
-  // environment {
-    //     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    // }
+    environment {
+            DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        }
     stages {
-            stage('Hello') {
-                steps {
-                    sh '''
-                    ls 
-                    pwd
-                    '''
-                }
-            }
+                // stage('Hello') {
+                //     steps {
+                //         sh '''
+                //         ls 
+                //         pwd
+                //         '''
+                //     }
+                // }
     //     stage('Test-Auth-Binaries') {
     //      agent {
     //         docker {
