@@ -48,22 +48,22 @@ pipeline {
             }
         }
 
-//        stage('Test-UI-Binaries') {
-//          agent {
-//             docker {
-//               image 'node:17'
-//               args '-u root:root'
-//             }
-//             }
-//             steps {
-//                 sh '''
-//                 cd weatherapp/UI
-//                 npm run
-//                 ls -latr
-//                 cd -
-//                 '''
-//             }
-//         }
+       stage('Test-UI-Binaries') {
+         agent {
+            docker {
+              image 'node:17'
+              args '-u root:root'
+            }
+            }
+            steps {
+                sh '''
+                cd weatherapp/UI
+                npm run
+                ls -latr
+                cd -
+                '''
+            }
+        }
 
 //       stage('Test-Weather-Binaries') {
 //          agent {
