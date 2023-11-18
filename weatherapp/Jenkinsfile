@@ -1,7 +1,7 @@
 
 pipeline {
 
-    agetnt any
+    agent any
     // agent {
     //     label ("aws-deploy")
     // }
