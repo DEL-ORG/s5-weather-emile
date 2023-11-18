@@ -22,23 +22,23 @@ pipeline {
                     '''
                 }
             }
-    //     stage('Test-Auth-Binaries') {
-    //      agent {
-    //         docker {
-    //           image 'golang:alpine'
-    //           args '-u root:root'
-    //         }
-    //         }
-    //         steps {
-    //             sh '''
-    //             cd weatherapp/auth/src/main
-    //             go build
-    //             go tess
-    //             ls -latr
-    //             cd -
-    //             '''
-    //         }
-    //     }
+        stage('Test-Auth-Binaries') {
+         agent {
+            docker {
+              image 'golang:alpine'
+              args '-u root:root'
+            }
+            }
+            steps {
+                sh '''
+                cd weatherapp/auth/src/main
+                go build
+                go tess
+                ls -latr
+                cd -
+                '''
+            }
+        }
 
     //    stage('Test-UI-Binaries') {
     //      agent {
