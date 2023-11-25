@@ -51,13 +51,13 @@ pipeline {
         }
 
             stage('warning') {
-                    	agent { 
-                    label "deployer"
-                    }
-                when{ 
-                    expression {
-                    env.GIT_BRANCH == 'origin/develop' }  
-                    }
+                //     	agent { 
+                //     label "deployer"
+                //     }
+                // when{ 
+                //     expression {
+                //     env.GIT_BRANCH == 'origin/develop' }  
+                //     }
       steps {
         script {
             notifyUpgrade(currentBuild.currentResult, "WARNING")
