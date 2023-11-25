@@ -50,21 +50,6 @@ pipeline {
             }
         }
 
-            stage('warning') {
-                //     	agent { 
-                //     label "deployer"
-                //     }
-                // when{ 
-                //     expression {
-                //     env.GIT_BRANCH == 'origin/develop' }  
-                //     }
-      steps {
-        script {
-            notifyUpgrade(currentBuild.currentResult, "WARNING")
-            sleep(time:env.WARNTIME, unit:"MINUTES")
-        }
-      }
-    }
 
                 // stage('Hello') {
                 //     steps {
@@ -150,221 +135,239 @@ pipeline {
 //                 }
 //             }
 
-//       stage('Built-Auth-Image') {
+      stage('Built-Auth-Image') {
         
-//             steps {
-//                 sh '''
-//                 cd $WORKSPACE/weatherapp/auth
-//                 docker build -t devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER} .
-//                 '''
-//             }
-//         }
+            steps {
+                sh '''
+                cd $WORKSPACE/weatherapp/auth
+                docker build -t devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER} .
+                '''
+            }
+        }
 
-//         stage("Push-Auth-Image") {
-//                when{ 
-//           expression {
-//             env.GIT_BRANCH == 'origin/develop' }  
-//             }
-//             steps {
-//                 sh '''
-//                     docker push devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER}
-//                     '''
-//                 }
-//             }
+        stage("Push-Auth-Image") {
+               when{ 
+          expression {
+            env.GIT_BRANCH == 'origin/develop' }  
+            }
+            steps {
+                sh '''
+                    docker push devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER}
+                    '''
+                }
+            }
 
-//         stage('Built-UI-Image') {
+        stage('Built-UI-Image') {
                 
-//                     steps {
-//                         sh '''
-//                         cd $WORKSPACE/weatherapp/UI
-//                         docker build -t devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER} .
-//                         '''
-//                     }
-//                 }
+                    steps {
+                        sh '''
+                        cd $WORKSPACE/weatherapp/UI
+                        docker build -t devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER} .
+                        '''
+                    }
+                }
 
-//         stage("Push-UI-Image") {
-//                     when{ 
-//                 expression {
-//                     env.GIT_BRANCH == 'origin/develop' }  
-//                     }
-//                     steps {
-//                         sh '''
-//                             docker push devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER}
-//                             '''
-//                         }
-//                     }
+        stage("Push-UI-Image") {
+                    when{ 
+                expression {
+                    env.GIT_BRANCH == 'origin/develop' }  
+                    }
+                    steps {
+                        sh '''
+                            docker push devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER}
+                            '''
+                        }
+                    }
 
-//                   stage('Built-Weather-Image') {
+                  stage('Built-Weather-Image') {
         
-//             steps {
-//                 sh '''
-//                 cd $WORKSPACE/weatherapp/weather
-//                 docker build -t devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER} .
-//                 '''
-//             }
-//         }
+            steps {
+                sh '''
+                cd $WORKSPACE/weatherapp/weather
+                docker build -t devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER} .
+                '''
+            }
+        }
 
-//         stage("Push-Weather-Image") {
-//                 when{ 
-//             expression {
-//                 env.GIT_BRANCH == 'origin/develop' }  
-//                 }
-//                 steps {
-//                     sh '''
-//                         docker push devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER}
-//                         '''
-//                     }
-//                 }
+        stage("Push-Weather-Image") {
+                when{ 
+            expression {
+                env.GIT_BRANCH == 'origin/develop' }  
+                }
+                steps {
+                    sh '''
+                        docker push devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER}
+                        '''
+                    }
+                }
 
-//           stage('Built-db-Image') {
+          stage('Built-db-Image') {
         
-//             steps {
-//                 sh '''
-//                 cd $WORKSPACE/weatherapp/db
-//                 docker build -t devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER} .
-//                 '''
-//             }
-//         }
+            steps {
+                sh '''
+                cd $WORKSPACE/weatherapp/db
+                docker build -t devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER} .
+                '''
+            }
+        }
 
-//             stage("Push-DB-Image") {
-//                         when{ 
-//                     expression {
-//                         env.GIT_BRANCH == 'origin/develop' }  
-//                         }
-//                         steps {
-//                             sh '''
-//                                 docker push devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER}
-//                                 '''
-//                             }
-//                         }
+            stage("Push-DB-Image") {
+                        when{ 
+                    expression {
+                        env.GIT_BRANCH == 'origin/develop' }  
+                        }
+                        steps {
+                            sh '''
+                                docker push devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER}
+                                '''
+                            }
+                        }
 
-//             stage('Built-redis-Image') {
+            stage('Built-redis-Image') {
             
-//                 steps {
-//                     sh '''
-//                     cd $WORKSPACE/weatherapp/redis
-//                     docker build -t devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER} .
-//                     '''
-//                 }
-//             }
+                steps {
+                    sh '''
+                    cd $WORKSPACE/weatherapp/redis
+                    docker build -t devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER} .
+                    '''
+                }
+            }
 
-//             stage("Push-redis-Image") {
-//                     when{ 
-//                 expression {
-//                     env.GIT_BRANCH == 'origin/develop' }  
-//                     }
-//                     steps {
-//                         sh '''
-//                             docker push devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
-//                             '''
-//                         }
-//                     }
+            stage("Push-redis-Image") {
+                    when{ 
+                expression {
+                    env.GIT_BRANCH == 'origin/develop' }  
+                    }
+                    steps {
+                        sh '''
+                            docker push devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
+                            '''
+                        }
+                    }
 
    
-//         stage('Compose construct') {
-//         agent { 
-//             label "deployer"
-//             }
-//                 steps {
-//                     script {
-//                     withCredentials([
-//                         string(credentialsId: 'WEATHERAPP_MYSQL_ROOT_PASSWORD', variable: 'WEATHERAPP_MYSQL_ROOT_PASSWORD'),
-//                         string(credentialsId: 'WEATHERAPP_REDIS_PASSWORD', variable: 'WEATHERAPP_REDIS_PASSWORD'),
-//                         string(credentialsId: 'WEATHERAPP_APIKEY', variable: 'WEATHERAPP_APIKEY'),
-//                         string(credentialsId: 'WEATHERAPP_DB_PASSWORD', variable: 'WEATHERAPP_DB_PASSWORD')
-//                     ]) {
+        stage('Compose construct') {
+        agent { 
+            label "deployer"
+            }
+                steps {
+                    script {
+                    withCredentials([
+                        string(credentialsId: 'WEATHERAPP_MYSQL_ROOT_PASSWORD', variable: 'WEATHERAPP_MYSQL_ROOT_PASSWORD'),
+                        string(credentialsId: 'WEATHERAPP_REDIS_PASSWORD', variable: 'WEATHERAPP_REDIS_PASSWORD'),
+                        string(credentialsId: 'WEATHERAPP_APIKEY', variable: 'WEATHERAPP_APIKEY'),
+                        string(credentialsId: 'WEATHERAPP_DB_PASSWORD', variable: 'WEATHERAPP_DB_PASSWORD')
+                    ]) {
 
-//                         sh '''
-//          cat <<EOF > docker-compose.yml
-// version: '3.5'         
-// services:
-//   db:
-//     container_name: weatherapp-db
-//     image: devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER}
-//     environment:
-//       MYSQL_ROOT_PASSWORD: ${WEATHERAPP_MYSQL_ROOT_PASSWORD}
-//     volumes:
-//       - db-data:/var/lib/mysql
-//     networks:
-//       - weatherapp
-//     restart: always
+                        sh '''
+         cat <<EOF > docker-compose.yml
+version: '3.5'         
+services:
+  db:
+    container_name: weatherapp-db
+    image: devopseasylearning/s5-emile-weatherapp-db:${BUILD_NUMBER}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${WEATHERAPP_MYSQL_ROOT_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - weatherapp
+    restart: always
 
-//   redis:
-//     container_name: weatherapp-redis
-//     image: devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
-//     networks:
-//       - weatherapp
-//     environment:
-//       REDIS_USER: redis
-//       REDIS_PASSWORD: ${WEATHERAPP_REDIS_PASSWORD}
-//     volumes:
-//       - redis-data:/data
-//     restart: always
+  redis:
+    container_name: weatherapp-redis
+    image: devopseasylearning/s5-emile-weatherapp-redis:${BUILD_NUMBER}
+    networks:
+      - weatherapp
+    environment:
+      REDIS_USER: redis
+      REDIS_PASSWORD: ${WEATHERAPP_REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    restart: always
 
-//   weather:
-//     container_name: weatherapp-weather
-//     image: devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER}
-//     expose:
-//       - 5000
-//     environment:
-//       APIKEY: ${WEATHERAPP_APIKEY}
-//     networks:
-//       - weatherapp
-//     restart: always
-//     depends_on:
-//       - db
-//       - redis  # Weather depends on both db and redis
-//   auth:
-//     container_name: weatherapp-auth
-//     image: devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER}
-//     environment:
-//       DB_HOST: db
-//       DB_PASSWORD: ${WEATHERAPP_DB_PASSWORD}
-//     expose:
-//       - 8080
-//     networks:
-//       - weatherapp
-//     restart: always
-//     depends_on:
-//       - weather  # Auth depends on the weather service
+  weather:
+    container_name: weatherapp-weather
+    image: devopseasylearning/s5-emile-weatherapp-weather:${BUILD_NUMBER}
+    expose:
+      - 5000
+    environment:
+      APIKEY: ${WEATHERAPP_APIKEY}
+    networks:
+      - weatherapp
+    restart: always
+    depends_on:
+      - db
+      - redis  # Weather depends on both db and redis
+  auth:
+    container_name: weatherapp-auth
+    image: devopseasylearning/s5-emile-weatherapp-auth:${BUILD_NUMBER}
+    environment:
+      DB_HOST: db
+      DB_PASSWORD: ${WEATHERAPP_DB_PASSWORD}
+    expose:
+      - 8080
+    networks:
+      - weatherapp
+    restart: always
+    depends_on:
+      - weather  # Auth depends on the weather service
 
-//   ui:
-//     container_name: weatherapp-ui
-//     image: devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER}
-//     environment:
-//      eric: eric
-//      AUTH_HOST: auth
-//      AUTH_PORT: 8080
-//      WEATHER_HOST: weather
-//      WEATHER_PORT: 5000
-//      REDIS_USER: redis
-//      REDIS_PASSWORD: redis
-//     expose:
-//       - 3000
-//     ports:
-//       - 3000:3000
-//     networks:
-//       - weatherapp
-//     restart: always
-//     depends_on:
-//       - auth  # UI depends on Auth
-// networks:
-//   weatherapp:
+  ui:
+    container_name: weatherapp-ui
+    image: devopseasylearning/s5-emile-weatherapp-ui:${BUILD_NUMBER}
+    environment:
+     eric: eric
+     AUTH_HOST: auth
+     AUTH_PORT: 8080
+     WEATHER_HOST: weather
+     WEATHER_PORT: 5000
+     REDIS_USER: redis
+     REDIS_PASSWORD: redis
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    networks:
+      - weatherapp
+    restart: always
+    depends_on:
+      - auth  # UI depends on Auth
+networks:
+  weatherapp:
 
-// volumes:
-//   db-data:
-//   redis-data:
+volumes:
+  db-data:
+  redis-data:
   
-// EOF
+EOF
 
-//              '''
-//                             }
+             '''
+                            }
 
-//                             }
+                            }
 
-//                         }
+                        }
 
-//                         }
+                        }
+
+
+stage('warning') {
+                    	agent { 
+                    label "deployer"
+                    }
+                when{ 
+                    expression {
+                    env.GIT_BRANCH == 'origin/develop' }  
+                    }
+                    
+      steps {
+        script {
+            notifyUpgrade(currentBuild.currentResult, "WARNING")
+            sleep(time:env.WARNTIME, unit:"MINUTES")
+        }
+      }
+    }
 
 //          stage("Deploy") {
 //                   	agent { 
@@ -387,6 +390,48 @@ pipeline {
 //                             '''
 //                         }
 //                     }
+
+
+post { 
+    always {
+      script {
+        notifyUpgrade(currentBuild.currentResult, "POST")
+      }
+    }
+    
+  }
+
+
+def notifyUpgrade(String buildResult, String whereAt) {
+  if (Please_leave_this_section_as_it_is == 'origin/develop') {
+    channel = 'development-alerts'
+  } else {
+    channel = 'development-alerts'
+  }
+  if (buildResult == "SUCCESS") {
+    switch(whereAt) {
+      case 'WARNING':
+        slackSend(channel: channel,
+                color: "#439FE0",
+                message: "The_weather_APP_s5emile: Upgrade starting in ${env.WARNTIME} minutes @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
+        break
+    case 'STARTING':
+      slackSend(channel: channel,
+                color: "good",
+                message: "The_weather_APP_s5emile: Starting upgrade @ ${env.BUILD_URL} Application The_weather_APP_s5emile")
+      break
+    default:
+        slackSend(channel: channel,
+                color: "good",
+                message: "The_weather_APP_s5emile: Upgrade completed successfully @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
+        break
+    }
+  } else {
+    slackSend(channel: channel,
+              color: "danger",
+              message: "The_weather_APP_s5emile: Upgrade was not successful. Please investigate it immediately.  @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
+  }
+}
 
 
     }
