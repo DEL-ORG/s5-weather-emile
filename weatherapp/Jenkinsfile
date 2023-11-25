@@ -23,6 +23,32 @@ pipeline {
                     }
                 }
 
+                stage('Setup parameters') {
+                            steps {
+                                script {
+                                    properties([
+                                        parameters([
+                                        
+                                        // choice(
+                                        //             choices: ['Yes', 'No'], 
+                                        //             name: 'Wheater-APP'
+                                        
+                                        //         ),
+
+                                            string(name: 'WARNTIME',
+                                            defaultValue: '2',
+                                            description: '''Warning time (in minutes) before starting upgrade'''),
+
+                                        string(
+                                                defaultValue: 'develop',
+                                                name: 'Please_leave_this_section_as_it_is',
+                                                trim: true
+                                            ),
+                                        ])
+                                    ])
+                                }
+                            }
+                        }
 
                 // stage('Hello') {
                 //     steps {
