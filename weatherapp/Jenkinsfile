@@ -424,10 +424,11 @@ EOF
 //               color: "danger",
 //               message: "The_weather_APP_s5emile: Upgrade was not successful. Please investigate it immediately.  @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
 //   }
-// }
 
 
-//     }
+
+       }
+   }
 
 
 
