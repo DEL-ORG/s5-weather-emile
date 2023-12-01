@@ -381,7 +381,7 @@ EOF
 
                                   '''
                               }
-                  //         }
+                          }
                   // stage('Testing-if-containerUP') {
                   //   	agent { 
                   //         label "deployer"
@@ -448,7 +448,7 @@ def notifyUpgrade(String buildResult, String whereAt) {
 
 
 
-       }
+   }
 
 
 
