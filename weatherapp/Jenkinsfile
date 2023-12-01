@@ -257,10 +257,11 @@ pipeline {
                     }
    
         stage('Compose construct') {
-        agent { 
-            label "deployer"
-            }
-                steps {
+
+                agent { 
+                    label "deployer"
+                    }
+               steps {
                     script {
                     withCredentials([
                         string(credentialsId: 'WEATHERAPP_MYSQL_ROOT_PASSWORD', variable: 'WEATHERAPP_MYSQL_ROOT_PASSWORD'),
@@ -357,31 +358,42 @@ EOF
               }
           }
        }
-    }
+    
 
 
-//          stage("Deploy") {
-//                   	agent { 
-//                     label "deployer"
-//                     }
-//                 when{ 
-//                     expression {
-//                     env.GIT_BRANCH == 'origin/develop' }  
-//                     }
-//                     steps {
-//                         sh '''
-//                           ls -ltrha
-//                           pwd
-//                           cat docker-compose.yml
-//                           docker-compose down --remove-orphans
-//                           docker-compose up -d
-//                           docker-compose ps
-//                           ip addr show 
+               stage("Deploy") {
+                        	agent { 
+                          label "deployer"
+                          }
+                      when{ 
+                          expression {
+                          env.GIT_BRANCH == 'origin/develop' }  
+                          }
+                          steps {
+                              sh '''
+                                ls -ltrha
+                                pwd
+                                cat docker-compose.yml
+                                docker-compose down --remove-orphans
+                                docker-compose up -d
+                                docker-compose ps
+                                ip addr show 
 
-//                             '''
-//                         }
-//                     }
-
+                                  '''
+                              }
+                          }
+                  stage('Testing-if-containerUP') {
+                    	agent { 
+                          label "deployer"
+                          }
+                        steps {
+                            sh '''
+                            ./check-container.sh
+                            '''
+                        }
+                    }
+                }
+            }
 
         post { 
             always {
