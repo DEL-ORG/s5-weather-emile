@@ -381,17 +381,28 @@ EOF
 
                                   '''
                               }
-                          }
-                  stage('Testing-if-containerUP') {
+                  //         }
+                  // stage('Testing-if-containerUP') {
+                  //   	agent { 
+                  //         label "deployer"
+                  //         }
+                  //       steps {
+                  //           sh '''
+                  //           bash weatherapp/check-container.sh
+                  //           '''
+                  //       }
+                  
+                  // }
+                   stage('smoke-test') {
                     	agent { 
                           label "deployer"
                           }
                         steps {
                             sh '''
-                            bash weatherapp/check-container.sh
+                            bash weatherapp/smock-check.sh
                             '''
                         }
-                    }
+                    }  
                 }
             }
 
