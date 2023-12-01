@@ -385,50 +385,51 @@ EOF
 //                     }
 
 
-//         post { 
-//             always {
-//             script {
-//                 notifyUpgrade(currentBuild.currentResult, "POST")
-//             }
-//           }
+        post { 
+            always {
+            script {
+                notifyUpgrade(currentBuild.currentResult, "POST")
+            }
+          }
             
-//         }
-//    }
+        }
 
-// def notifyUpgrade(String buildResult, String whereAt) {
-//   if (Please_leave_this_section_as_it_is == 'origin/develop') {
-//     channel = 'development-alerts'
-//   } else {
-//     channel = 'development-alerts'
-//   }
-//   if (buildResult == "SUCCESS") {
-//     switch(whereAt) {
-//       case 'WARNING':
-//         slackSend(channel: channel,
-//                 color: "#439FE0",
-//                 message: "The_weather_APP_s5emile: Upgrade starting in ${env.WARNTIME} minutes @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
-//         break
-//     case 'STARTING':
-//       slackSend(channel: channel,
-//                 color: "good",
-//                 message: "The_weather_APP_s5emile: Starting upgrade @ ${env.BUILD_URL} Application The_weather_APP_s5emile")
-//       break
-//     default:
-//         slackSend(channel: channel,
-//                 color: "good",
-//                 message: "The_weather_APP_s5emile: Upgrade completed successfully @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
-//         break
-//     }
-//   } else {
-//     slackSend(channel: channel,
-//               color: "danger",
-//               message: "The_weather_APP_s5emile: Upgrade was not successful. Please investigate it immediately.  @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
-//   }
+    }
+}
+
+def notifyUpgrade(String buildResult, String whereAt) {
+  if (Please_leave_this_section_as_it_is == 'origin/develop') {
+    channel = 'development-alerts'
+  } else {
+    channel = 'development-alerts'
+  }
+  if (buildResult == "SUCCESS") {
+    switch(whereAt) {
+      case 'WARNING':
+        slackSend(channel: channel,
+                color: "#439FE0",
+                message: "The_weather_APP_s5emile: Upgrade starting in ${env.WARNTIME} minutes @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
+        break
+    case 'STARTING':
+      slackSend(channel: channel,
+                color: "good",
+                message: "The_weather_APP_s5emile: Starting upgrade @ ${env.BUILD_URL} Application The_weather_APP_s5emile")
+      break
+    default:
+        slackSend(channel: channel,
+                color: "good",
+                message: "The_weather_APP_s5emile: Upgrade completed successfully @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
+        break
+    }
+  } else {
+    slackSend(channel: channel,
+              color: "danger",
+              message: "The_weather_APP_s5emile: Upgrade was not successful. Please investigate it immediately.  @ ${env.BUILD_URL}  Application The_weather_APP_s5emile")
+  }
 
 
 
        }
-   }
 
 
 
