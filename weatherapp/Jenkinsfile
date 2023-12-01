@@ -388,7 +388,7 @@ EOF
                           }
                         steps {
                             sh '''
-                            ./check-container.sh
+                            bash weatherapp/check-container.sh
                             '''
                         }
                     }
